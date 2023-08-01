@@ -1,0 +1,16 @@
+model 3 to 4: by adding some layers to the model adaptor and increasing the number of neurons in it -> bounding box loss actually increased though, counterintuitively.
+model 4 to 5: changed crescendo of model adaptor neuron number flat 128 at each layer -> bounding box loss returns base architecure level but classification loss seems to rise faster (but sticks to the same peak)
+model 5 to 6: reduced the number model adaptor neurons in base architecture by half -> classification loss decreased by 20% roughly
+model 6 to 7: reduced the number model adaptor neurons in base architecture by 3/4-> model accuracy steps up by 5-10 percent
+model 7 to 8: changed model adaptor activation function from relu to elu -> seems to introduce a little more volatility in classification loss
+model 8 to 9: changed model adaptor activation function from relu to exponential -> huge decrease in bounding box loss (near perfect), classification loss drops by 25% roughly but introduces huge volatility, model accuracy is about the same (little lower).
+model 9 to 10: changed model adaptor activation function from relu to gelu -> model accuracy up by 5% and classification loss down by 40% but bounding box loss stays same
+model 10 to 11: changed model adaptor activation function from relu to hard sigmoid -> huge increase in volatility everywhere, model accuracy up by 5% and classification loss down by 60% but bounding box loss stays same
+model 11 to 12: changed model adaptor activation function from relu to linear -> classification loss up by 20% bound box loss down by 75%
+model 12 to 13: changed model adaptor activation function from relu to selu -> classification loss down by 30% bound box loss down by 75% model accuracy up by 2 or 3 percent.
+*************************************************************************************early stopping implemented**************************************************************************************
+model 13 to 14: changed model adaptor activation function from relu to sigmoid -> classification loss down by 40% bound box loss down by 25% model accuracy down by 2 or 3 percent.
+model 14 to 15: changed model adaptor activation function from relu to softplus -> classification loss down by 20% model accuracy down by 5 percent.
+model 15 to 16: changed model adaptor activation function from relu to softsign -> classification loss down by 30%
+model 16 to 17: changed model adaptor activation function from relu to swish -> model accuracy up by 10%, bounding box loss down by 85%
+model 17 to 18: changed model adaptor activation function from relu to tanh -> model accuracy up by 10%, classification loss down up by 15%, bounding box loss down by 85%

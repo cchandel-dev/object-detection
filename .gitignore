@@ -1,5 +1,7 @@
-custom object detection/
-custom model (800 img 50 epoch) detr/
+custom object detection/logs/
+custom object detection/obj/
+custom object detection/*.h5
+custom model (800 img 50 epoch) detr/*.bin
 facebook research detr/custom-model/
 yolo from scratch/Dataset-YOLO/
 yolo from scratch/__pycache__/
@@ -15,3 +17,4 @@ facebook research d2/__pycache__/
 datasets/
 aerial-detector/Aero Landing Zone Object Detection.v2i.yolov8/
 __pycache__/
+*.yml
