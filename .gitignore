@@ -1,0 +1,17 @@
+custom object detection/
+custom model (800 img 50 epoch) detr/
+facebook research detr/custom-model/
+yolo from scratch/Dataset-YOLO/
+yolo from scratch/__pycache__/
+ultralytics yolo/datasets/
+ultralytics yolo/runs/
+Tufts - performance evaluations/
+facebook research detr/datasets/
+facebook research detr/lightning_logs/
+facebook research d2/data/
+facebook research d2/detectron2/
+facebook research d2/output/
+facebook research d2/__pycache__/
+datasets/
+aerial-detector/Aero Landing Zone Object Detection.v2i.yolov8/
+__pycache__/

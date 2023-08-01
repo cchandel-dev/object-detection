@@ -1,0 +1,9 @@
+ok so this works ... kind of...
+when the mAP > 0.9, we stop training but that happened really quickly...
+I didn't like that
+I turned that off and got the loss below 4 after training for the whole night, the results weren't terrible tbh.
+I think I need to get rid of the healthy samples, for the next implementation.
+
+ran into 2 issues simultaneously, not sure why saving the model was breaking and not sure why mAP crossed 0.9 so fast.
+
+Use pickle to save and load the model
