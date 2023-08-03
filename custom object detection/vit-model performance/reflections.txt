@@ -1,0 +1,5 @@
+5->0: more transorfmer layer gives a little accuracy boost
+4->3: reduced the patch size + halved projection + increase heads, huge amount of time per epoch but a signifcant increase in accuracy.
+3->0: reduced the patch size + halved projection, decent accuracy
+2->0: reduced projection dim from 64 to 32, thereby speeding up each epoch, reducing the the number of epochs till convergence and slightly improving accuracy.
+1->0: increased number of heads from 4 to 8, thereby reducing convergence time and 
