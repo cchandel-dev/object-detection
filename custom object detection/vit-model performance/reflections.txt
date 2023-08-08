@@ -1,4 +1,6 @@
-8-> reduced the number of projected dims and class predicitions somehow got fixed!
+10-> increased patch size  and realllly boosted the accuracy (class and IoU)
+9->reduced the number of projected dims to 8 and class predicitions look even nicer!
+8-> reduced the number of projected dims to 16 and class predicitions somehow got fixed!
 7-> custom dataset works!
 5->0: more transorfmer layer gives a little accuracy boost
 4->3: reduced the patch size + halved projection + increase heads, huge amount of time per epoch but a signifcant increase in accuracy.
