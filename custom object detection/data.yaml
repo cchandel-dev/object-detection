@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 3
+names: ['Blue', 'Red', 'Unknown']
+
+roboflow:
+  workspace: dd-xsqu0
+  project: aero-landing-zone-object-detection
+  version: 4
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/dd-xsqu0/aero-landing-zone-object-detection/dataset/4

@@ -1,6 +1,7 @@
 custom object detection/logs/
 custom object detection/obj/
 custom object detection/kt_dir/
+custom object detection/Aero Landing Zone Object Detection.v5i.yolov8/
 custom object detection/*.h5
 custom model (800 img 50 epoch) detr/*.bin
 facebook research detr/custom-model/
