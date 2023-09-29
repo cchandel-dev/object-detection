@@ -68,64 +68,65 @@ image_folders = [
     'C:\\Users\\EaglesonLabs\\object-detection\\aerial-detector\\Aero Landing Zone Object Detection.v2i.yolov8\\train\\images',
     'C:\\Users\\EaglesonLabs\\object-detection\\aerial-detector\\Aero Landing Zone Object Detection.v2i.yolov8\\valid\\images'
                  ]
-for image_folder in image_folders:
-    print(image_folder)
-    images = os.listdir(image_folder)
-    for image in images:
-        if image is not None:
-            image = os.path.join(image_folder, image)
-            input_img = cv2.imread(image)
-            img = cv2.resize(input_img, (1500, 1200))
-            # Make a copy to draw contour outline
-            img = img.copy()
-            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            
-            # define range of red color in HSV
-            lower_red = np.array([0, 50, 50])
-            upper_red = np.array([10, 255, 255])   
-            
+# for image_folder in image_folders:
+#     print(image_folder)
+#     images = os.listdir(image_folder)
+#     for image in images:
+image = 'my_image.jpg'
+input_img = cv2.imread(image)
+img = cv2.resize(input_img, (1500, 1200))
+# Make a copy to draw contour outline
+img = img.copy()
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-            # define range of blue color in HSV
-            lower_blue = np.array([100, 50, 50])
-            upper_blue = np.array([130, 255, 255])
-            blurred = cv2.GaussianBlur(img,(5,5),cv2.BORDER_DEFAULT)
-            blurred = cv2.GaussianBlur(blurred,(5,5),cv2.BORDER_DEFAULT)
+# define range of red color in HSV
+lower_red = np.array([0, 50, 50])
+upper_red = np.array([10, 255, 255])   
 
 
-            ret, thresh2 = cv2.threshold(blurred, 200, 255, cv2.THRESH_BINARY_INV)
-            keypoints=[]
-            ret, thresh2 = cv2.threshold(thresh2, 249, 255, cv2.THRESH_BINARY_INV)
-            ret, thresh2 = cv2.threshold(thresh2, 1, 255, cv2.THRESH_BINARY_INV)
-            ret, thresh2 = cv2.threshold(thresh2, 249, 255, cv2.THRESH_BINARY_INV)
-            ret, thresh2 = cv2.threshold(thresh2, 1, 255, cv2.THRESH_BINARY_INV)
-            keypoints.append(detector.detect(thresh2))
+# define range of blue color in HSV
+lower_blue = np.array([100, 50, 50])
+upper_blue = np.array([130, 255, 255])
+blurred = cv2.GaussianBlur(img,(5,5),cv2.BORDER_DEFAULT)
+blurred = cv2.GaussianBlur(blurred,(5,5),cv2.BORDER_DEFAULT)
 
-            
-            hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)         
-            # create a mask for red color
-            mask_red = cv2.inRange(hsv, lower_red, upper_red)
-            # find contours in the red mask
-            contours_red, _ = cv2.findContours(mask_red, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-            # create a mask for blue color
-            mask_blue = cv2.inRange(hsv, lower_blue, upper_blue)
-            # find contours in the blue mask
-            contours_blue, _ = cv2.findContours(mask_blue, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-            contour_ammalgomater(img, contours_blue, mask_blue)
-            contour_ammalgomater(img, contours_red, mask_red)
-            
-            points = 0
-            for keypoint in keypoints:
-                # Draw blobs on our image as red circles
-                blank = np.zeros((4, 4)) 
-                img = cv2.drawKeypoints(img, keypoint, blank, (0, 0, 0),
-                                        cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
-                points += len(keypoint)
-            text = "Number of Circular Blobs: " + str(points)
-            cv2.putText(img, text, (20, 550),
-                        cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 100, 255), 2)
-            
-            # Display final output for multiple color detection opencv python
-            cv2.imshow('image', img)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+ret, thresh2 = cv2.threshold(blurred, 200, 255, cv2.THRESH_BINARY_INV)
+keypoints=[]
+ret, thresh2 = cv2.threshold(thresh2, 249, 255, cv2.THRESH_BINARY_INV)
+ret, thresh2 = cv2.threshold(thresh2, 1, 255, cv2.THRESH_BINARY_INV)
+ret, thresh2 = cv2.threshold(thresh2, 249, 255, cv2.THRESH_BINARY_INV)
+ret, thresh2 = cv2.threshold(thresh2, 1, 255, cv2.THRESH_BINARY_INV)
+keypoints.append(detector.detect(thresh2))
+
+
+hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)         
+# create a mask for red color
+mask_red = cv2.inRange(hsv, lower_red, upper_red)
+# find contours in the red mask
+contours_red, _ = cv2.findContours(mask_red, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+# create a mask for blue color
+mask_blue = cv2.inRange(hsv, lower_blue, upper_blue)
+# find contours in the blue mask
+contours_blue, _ = cv2.findContours(mask_blue, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+contour_ammalgomater(img, contours_blue, mask_blue)
+contour_ammalgomater(img, contours_red, mask_red)
+
+points = 0
+for keypoint in keypoints:
+    # Draw blobs on our image as red circles
+    blank = np.zeros((4, 4)) 
+    img = cv2.drawKeypoints(img, keypoint, blank, (0, 0, 0),
+                            cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+    points += len(keypoint)
+text = "Number of Circular Blobs: " + str(points)
+cv2.putText(img, text, (20, 550),
+            cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 100, 255), 2)
+
+# Display final output for multiple color detection opencv python
+# cv2.imshow('image', img)
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
+
+cv2.imwrite('output_image.jpg', img)
